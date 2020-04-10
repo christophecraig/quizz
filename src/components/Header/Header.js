@@ -1,10 +1,11 @@
 import React from 'react';
+import './Header.css';
 
 class Header extends React.Component {
     render() {
         return (
             <header>
-                Hi, this is a fabulous quizz.
+                <h1>Le<span className="highlight">Q</span>uizz.</h1>
             </header>
         )
     }

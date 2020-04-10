@@ -1,0 +1,12 @@
+h1 {
+    background-color: rgb(94, 111, 122);
+    color: #E0E0E0;
+    padding: 28px 0;
+    letter-spacing: .025em;
+    font-size: 1.75em;
+}
+
+.highlight {
+    color: #303030;
+}
+

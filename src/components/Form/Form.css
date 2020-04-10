@@ -1,0 +1,21 @@
+#addQuestion {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+    padding: 20px 0;
+}
+
+.button-submit {
+    height: 38px;
+    border-radius: 5px;
+    color: #FFF;
+    font-weight: 600;
+    font-size: 1.25em;
+    background: #3B3;
+    margin: 0 20px 15px;
+}

@@ -1,0 +1,22 @@
+#nav-container {
+    background-color: rgb(94, 111, 122);
+}
+
+.nav-item {
+    cursor: pointer;
+    color: #EEE;
+    font-weight: 600;
+    padding: 20px 0;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav-item:hover, .selected {
+    background-color: rgb(100, 115, 136);
+}
+
+#nav-list {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+}

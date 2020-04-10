@@ -1,0 +1,9 @@
+.input-text {
+    min-height: 38px;
+    border-radius: 5px;
+    border: solid 1px #ddd;
+}
+
+.form-group .input-text:not(:last-child) {
+    margin-bottom: 15px;
+}
