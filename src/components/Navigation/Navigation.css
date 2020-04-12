@@ -9,14 +9,27 @@
     padding: 20px 0;
     justify-content: center;
     flex-grow: 1;
-}
-
-.nav-item:hover, .selected {
-    background-color: rgb(100, 115, 136);
+    text-decoration: none;
 }
 
 #nav-list {
     padding: 0;
     list-style-type: none;
     display: flex;
+}
+
+.selected {
+    position: relative;
+}
+
+.selected::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -5px;
+    height: 5px;
+    border-radius: 50%;
+    box-shadow: 0 0px 0px 6px #FFF;
+    width: 40%;
+    left: 30%;
 }

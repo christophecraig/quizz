@@ -13,7 +13,14 @@ class InputText extends React.Component {
 
     render() {
         return (
-            <input type="text" className="input-text" placeholder={this.props.placeholder} name={this.props.name} id={this.props.id} onChange={this.handleChange} />
+            <input 
+            type="text" 
+            className="input-text" 
+            placeholder={this.props.placeholder} 
+            name={this.props.name} 
+            id={this.props.id} 
+            value={this.props.value}
+            onChange={this.handleChange} />
         )
     }
 }

@@ -1,0 +1,16 @@
+.answers {
+    overflow: hidden;
+    margin: 0 10%;
+}
+
+.answer {
+    float: left;
+    margin: 10px 10%;
+    width: 30%;
+    background: #596070;
+    color: #F0F0F0;
+    font-weight: 600;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 6px;
+}

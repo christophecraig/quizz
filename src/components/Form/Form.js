@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Modal from 'react-responsive-modal';
 import Emoji from 'a11y-react-emoji';
 import InputText from './Input/InputText';
 import { url } from '../../config';
@@ -27,9 +26,7 @@ class Form extends React.Component {
             answer4: {
                 answer: '',
                 correct: false
-            },
-            error: '',
-            open: false
+            }
         };
         this.addQuestion = this.addQuestion.bind(this);
         this.updateState = this.updateState.bind(this);
@@ -53,24 +50,38 @@ class Form extends React.Component {
                 question: this.state.question,
                 answers: answers
             }).then(response => {
-                console.log(response)
+                this.clearForm();
+                alert('parfait, merci!')
             }, err => {
                 console.log(err);
             })
         } else {
-            this.setState({ open: true })
-            this.setState({ error: 'Revois tes réponses l\'artiste, quelque chose ne va pas !' });
+            alert('applique toi !')
         }
     }
 
-    // Modal handler fuctions
-    onOpenModal = () => {
-        this.setState({ open: true });
-    };
-
-    onCloseModal = () => {
-        this.setState({ open: false });
-    };
+    clearForm() {
+        this.setState({
+            question: '',
+            answer1: {
+                answer: '',
+                correct: true
+            },
+            answer2: {
+                answer: '',
+                correct: false
+            },
+            answer3: {
+                answer: '',
+                correct: false
+            },
+            answer4: {
+                answer: '',
+                correct: false
+            }                 
+        });
+        console.log('normalement, les states sont clear')
+    }
 
     updateState(e) {
         // dégueu pour l'instant
@@ -101,26 +112,33 @@ class Form extends React.Component {
             <div id="addQuestion">
                 <h3>Ta question <Emoji symbol="❓" label="question" /></h3>
                 <div className="form-group">
-                    <InputText name="question" placeholder="Comment s'appelle le chien dans Lucky Luke ?" onChange={this.updateState} />
+                    <InputText name="question" 
+                    placeholder="Comment s'appelle le chien dans Lucky Luke ?" 
+                    value={this.state.question}
+                    onChange={this.updateState} />
                 </div>
 
                 <h3>La bonne réponse <Emoji symbol="✅" label="ok" /></h3>
                 <div className="form-group">
-                    <InputText name="answer1" onChange={this.updateState} />
+                    <InputText name="answer1" 
+                    value={this.state.answer1.answer} 
+                    onChange={this.updateState} />
                 </div>
 
                 <h3>Les mauvaises réponses, pour piéger les concurrents! <Emoji symbol="😏" label="espieglerie" /></h3>
                 <div className="form-group">
-                    <InputText name="answer2" onChange={this.updateState} />
-                    <InputText name="answer3" onChange={this.updateState} />
-                    <InputText name="answer4" onChange={this.updateState} />
+                    <InputText name="answer2" 
+                    value={this.state.answer2.answer} 
+                    onChange={this.updateState} />
+                    <InputText name="answer3" 
+                    value={this.state.answer3.answer} 
+                    onChange={this.updateState} />
+                    <InputText name="answer4" 
+                    value={this.state.answer4.answer} 
+                    onChange={this.updateState} />
                 </div>
 
                 <button onClick={this.addQuestion} className="button-submit">Ajouter</button>
-                <Modal open={this.state.open} onClose={this.onCloseModal} center>
-                    <h2>Et non ! <Emoji symbol="😢" label="tristesse" /></h2>
-                    <p>{this.state.error}</p>
-                </Modal>
             </div>
         )
     }

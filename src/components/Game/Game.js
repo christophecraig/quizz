@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { url } from '../../config';
 import { Link } from 'react-router-dom';
+import Question from './Question/Question';
+import Answers from './Answers/Answers';
 
 class Game extends React.Component {
     constructor(props) {
@@ -9,34 +11,46 @@ class Game extends React.Component {
         this.state = {
             count: 0
         }
+        this.handleFetchQuestions = this.handleFetchQuestions.bind(this);
     }
 
     componentDidMount() {
         axios.get(`${url}/total`).then(response => {
-            this.setState({ count: response.data.count })
+            this.setState({ count: response.data.count });
         }, err => {
             console.log(err)
         });
     }
 
-    fetchQuestions() {
-        // Random 10 ids between 0 and count (à voir aussi si le premier Id n'est pas de 1, ça tombe à l'eau...)
-        
-        // Requête sur /api/play en passant en paramètres de la query le tableau des ids obtenus ci-dessus
-
-        // À partir des couples {questions / 4 réponses} obtenus, les stocker dans le state
-
-        // Afficher 1 par 1 --> Bouton suivant et incrémentation de this.state.score si la réponse est bonne
-
-        // Prévoir la fin quand on arrive au bout du tableau
+    handleFetchQuestions() {
+        this.props.fetchQuestions();
     }
 
     render() {
-        return(
+        const q = this.props.questions[this.props.currentQuestion - 1];
+        return (
             <div id="game">
-                <p>Le jeu dispose actuellement de {this.state.count} questions. N'hésitez pas à <Link to="/form">en ajouter</Link> vous-même!</p>
-                <button class="button-play" onClick={this.fetchQuestions}>Jouer</button>
+                {!this.props.playing
+                    ?
+                    <div className="not-playing">
+                        <p>Le jeu dispose actuellement de {this.state.count} questions. N'hésitez pas à <Link to="/form">en ajouter</Link> vous-même!</p>
+                        <button className="button-play" onClick={this.handleFetchQuestions}>Jouer</button>
+                    </div>
+                    :
+                    <div className="playing">
+                        <div className="playing-screen">
+                            <div className="score">Score : {this.props.score}</div>
+                            <h4>Question n°{this.props.currentQuestion}</h4>
+                            <Question key={'q_' + q.id} question={q.question} />
+                            <Answers key={'atoq_' + q.id} 
+                            nextQuestion={this.props.nextQuestion} 
+                            incrementScore={this.props.incrementScore}
+                            answers={q.answers} />
+                        </div>
+                    </div>
+                }
             </div>
+
         );
     }
 };

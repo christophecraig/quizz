@@ -5,10 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(50deg, #f3c680, hsla(179, 54%, 76%, 1));
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@media screen and (min-width:721px) {
+    body {
+        background: linear-gradient(50deg, #f3c680, hsla(179, 54%, 76%, 1));
+    }
 }
