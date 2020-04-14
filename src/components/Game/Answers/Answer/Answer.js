@@ -1,4 +1,5 @@
 import React from 'react';
+import { Col, Button } from 'reactstrap';
 
 class Answer extends React.Component {
     constructor(props) {
@@ -7,6 +8,7 @@ class Answer extends React.Component {
     }
 
     handleClick(e) {
+        console.log(e.target);
         if (e.target.getAttribute('correct') === '1') {
             this.props.incrementScore();
         } else {
@@ -16,7 +18,7 @@ class Answer extends React.Component {
 
     render() {
         return (
-            <div className="answer" onClick={this.handleClick} correct={this.props.correct}>{this.props.answer}</div>
+            <Col xs="12" md="6"><Button block onClick={this.handleClick} correct={this.props.correct}>{this.props.answer}</Button></Col>
         )
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Emoji from 'a11y-react-emoji';
-import InputText from './Input/InputText';
+import { Input, Form as RSForm, FormGroup, Button } from 'reactstrap';
 import { url } from '../../config';
 import './Form.css';
 
@@ -87,59 +87,49 @@ class Form extends React.Component {
         // dégueu pour l'instant
         switch (e.target.name) {
             case 'question':
-                this.setState({ question: e.target.value })
-                break;
-            case 'answer1':
-                this.setState({ answer1: { answer: e.target.value, correct: true } })
-                break;
-            case 'answer2':
-                this.setState({ answer2: { answer: e.target.value, correct: false } })
-                break;
-            case 'answer3':
-                this.setState({ answer3: { answer: e.target.value, correct: false } })
-                break;
-            case 'answer4':
-                this.setState({ answer4: { answer: e.target.value, correct: false } })
+                this.setState({ question: e.target.value });
                 break;
             default:
-                console.log('non');
+                this.setState({ [e.target.name]: { answer: e.target.value, correct: true } });
                 break;
         }
     }
 
     render() {
         return (
-            <div id="addQuestion">
-                <h3>Ta question <Emoji symbol="❓" label="question" /></h3>
-                <div className="form-group">
-                    <InputText name="question" 
+            <RSForm>
+                <FormGroup>
+                    <h3>Ta question <Emoji symbol="❓" label="question" /></h3>
+                    <Input name="question" 
                     placeholder="Comment s'appelle le chien dans Lucky Luke ?" 
                     value={this.state.question}
                     onChange={this.updateState} />
-                </div>
+                </FormGroup>
 
-                <h3>La bonne réponse <Emoji symbol="✅" label="ok" /></h3>
-                <div className="form-group">
-                    <InputText name="answer1" 
+                <FormGroup>
+                    <h3>La bonne réponse <Emoji symbol="✅" label="ok" /></h3>
+                    <Input name="answer1" 
                     value={this.state.answer1.answer} 
                     onChange={this.updateState} />
-                </div>
+                </FormGroup>
 
-                <h3>Les mauvaises réponses, pour piéger les concurrents! <Emoji symbol="😏" label="espieglerie" /></h3>
-                <div className="form-group">
-                    <InputText name="answer2" 
+                <FormGroup>
+                    <h3>Les mauvaises réponses, pour piéger les concurrents! <Emoji symbol="😏" label="espieglerie" /></h3>
+                    <Input name="answer2" 
                     value={this.state.answer2.answer} 
                     onChange={this.updateState} />
-                    <InputText name="answer3" 
+                    <Input name="answer3" 
                     value={this.state.answer3.answer} 
                     onChange={this.updateState} />
-                    <InputText name="answer4" 
+                    <Input name="answer4" 
                     value={this.state.answer4.answer} 
                     onChange={this.updateState} />
-                </div>
+                </FormGroup>
 
-                <button onClick={this.addQuestion} className="button-submit">Ajouter</button>
-            </div>
+                <FormGroup>
+                    <Button onClick={this.addQuestion} color="primary">Ajouter</Button>
+                </FormGroup>
+            </RSForm>
         )
     }
 }

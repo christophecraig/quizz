@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { url } from '../../config';
 import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
 import Question from './Question/Question';
 import Answers from './Answers/Answers';
 
@@ -34,7 +35,8 @@ class Game extends React.Component {
                     ?
                     <div className="not-playing">
                         <p>Le jeu dispose actuellement de {this.state.count} questions. N'hésitez pas à <Link to="/form">en ajouter</Link> vous-même!</p>
-                        <button className="button-play" onClick={this.handleFetchQuestions}>Jouer</button>
+                        <Button size="lg" 
+                        onClick={this.handleFetchQuestions}>Jouer</Button>
                     </div>
                     :
                     <div className="playing">

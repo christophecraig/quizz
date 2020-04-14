@@ -58,7 +58,7 @@ class App extends React.Component {
 
     endGame() {
         this.setState({ playing: false});
-        alert('super');
+        alert(`super, tu as fait ${this.state.score} bonnes réponses sur 10 questions`);
     }
 
     render() {

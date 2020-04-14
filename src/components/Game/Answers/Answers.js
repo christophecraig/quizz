@@ -1,5 +1,6 @@
 import React from 'react';
 import Answer from './Answer/Answer';
+import { Row } from 'reactstrap';
 import './Answers.css';
 
 class Answers extends React.Component {
@@ -9,7 +10,7 @@ class Answers extends React.Component {
             return 0.5 - Math.random();
         });
         return (
-            <div className="answers">
+            <Row>
                 {answers.map(answer => {
                     return <Answer 
                     key={answer.id} 
@@ -18,7 +19,7 @@ class Answers extends React.Component {
                     correct={answer.correct} 
                     answer={answer.answer} />
                 })}
-            </div>
+            </Row>
         )
     }
 }
