@@ -1,3 +1,6 @@
+## Not usable yet
+I'll update this if I push the backend to in an other repository. But this is basically a way for me to learn react.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
